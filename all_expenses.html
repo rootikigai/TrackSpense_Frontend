@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>TrackSpense - Expenses</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  </head>
+  <body class="all-expenses">
+    <div class="container">
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="assets/images/trackspense-high-resolution-logo-transparent.png" alt="TrackSpense Logo">
+          </div>
+          <h2 class="logo-text">TrackSpense</h2>
+        </div>
+        <div class="nav-container">
+          <div class="nav-links">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="reports_analytics.html" class="nav-link">Reports / Analytics</a>
+            <a href="settings.html" class="nav-link">Settings</a>
+          </div>
+          <div class="user-profile">
+            <span id="user-email">user@example.com</span>
+          </div>
+          <div class="button-group">
+            <button class="icon-button">
+              <div class="icon" data-icon="Sun" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"></path>
+                </svg>
+              </div>
+            </button>
+            <button class="primary-button" id="logout-button"><span>Logout</span></button>
+          </div>
+        </div>
+      </header>
+      <div class="main-content">
+        <div class="content-container wide">
+          <div class="dashboard-section">
+            <div class="dashboard-container">
+              <div class="dashboard-content">
+                <div class="expenses-section">
+                  <div class="expenses-header">
+                    <h2 class="section-heading">Expenses</h2>
+                    <button class="primary-button" id="add-expense-button"><span>Add Expense</span></button>
+                  </div>
+                  <div class="search-bar wide">
+                    <input type="text" id="search-expenses" placeholder="Search by description or category" />
+                  </div>
+                  <table class="expenses-table wide">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="expenses-table-body"></tbody>
+                  </table>
+                </div>
+                <!-- Expense Pop UP -->
+                <div class="expense-modal" id="expense-modal">
+                  <div class="expense-modal-content">
+                    <button class="close-modal" id="close-modal">&times;</button>
+                    <h2>Add New Expense</h2>
+                    <form id="expense-form" class="auth-form">
+                      <div class="form-group">
+                        <label for="expense-amount">Amount (₦)</label>
+                        <input type="number" id="expense-amount" step="0.01" min="0" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="expense-category">Category</label>
+                        <select id="expense-category" required>
+                          <option value="" disabled selected>Select a category</option>
+                          <option value="FOOD">Food</option>
+                          <option value="TRANSPORT">Transport</option>
+                          <option value="RENT">Rent</option>
+                          <option value="ENTERTAINMENT">Entertainment</option>
+                          <option value="UTILITIES">Utilities</option>
+                          <option value="HEALTH">Health</option>
+                          <option value="EDUCATION">Education</option>
+                          <option value="OTHER">Other</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="expense-description">Description</label>
+                        <input type="text" id="expense-description" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" required />
+                      </div>
+                      <button type="submit" class="primary-button">Add Expense</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
