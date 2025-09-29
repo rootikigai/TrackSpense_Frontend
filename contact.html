@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Contact Us — TrackSpense</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="assets/images/trackspense-high-resolution-logo-transparent.png" alt="TrackSpense Logo">
+          </div>
+          <h2 class="logo-text">TrackSpense</h2>
+        </div>
+        <div class="nav-container">
+          <div class="nav-links">
+            <a class="nav-link" href="homepage.html#features">Features</a>
+            <a class="nav-link" href="homepage.html#testimonials">Testimonials</a>
+            <a class="nav-link" href="homepage.html#about">About Us</a>
+            <a class="nav-link" href="contact.html" aria-current="page">Contact Us</a>
+          </div>
+          <div class="button-group">
+            <button class="primary-button"><span>Sign Up</span></button>
+            <button class="secondary-button"><span>Login</span></button>
+            <button class="icon-button">
+              <div class="icon" data-icon="Sun" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="content-container">
+          <div class="form-section">
+            <h1 class="form-title">Contact Us</h1>
+            <p class="cta-description">Have a question or feedback? Send us a message and we'll get back to you within 2 business days.</p>
+
+            <form id="contact-form-page" class="auth-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input id="subject" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="6" required></textarea>
+              </div>
+              <button type="submit" class="primary-button">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-links">
+            <a class="footer-link" href="#">Privacy Policy</a>
+            <a class="footer-link" href="#">Terms of Service</a>
+          </div>
+          <p class="footer-text">© 2025 TrackSpense. --IKIGAI-- All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contact-form-page');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const subject = document.getElementById('subject').value.trim();
+          const message = document.getElementById('message').value.trim();
+          const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+          messages.push({ name, email, subject, message, date: new Date().toISOString() });
+          localStorage.setItem('contactMessages', JSON.stringify(messages));
+          alert('Thanks — your message has been received.');
+          form.reset();
+          window.location.href = 'homepage.html';
+        });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
