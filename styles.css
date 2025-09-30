@@ -80,13 +80,60 @@ body.light-mode .header-scrolled {
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 32px;
 }
+
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-icon,
+.close-icon {
+  font-size: 24px;
+  display: none;
+  color: #333;
+}
+
+.hamburger-icon.show,
+.close-icon.show {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .hamburger-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 200px;
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 36px;
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -1407,3 +1454,31 @@ body.light-mode .all-expenses .expenses-table td { border-bottom: 1px solid #e0e
 .toast.success { background: #1f7a3a; }
 .toast.error { background: #a12c2c; }
 .toast.warning { background: #a87300; }
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
+
+  .nav-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .button-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
