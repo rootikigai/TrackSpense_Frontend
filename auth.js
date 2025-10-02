@@ -1,26 +1,26 @@
 const API_BASE = "http://localhost:8080/api";
 
 // Runtime environment checks to help avoid common CORS/mixed-content pitfalls in dev
-(function runtimeChecks() {
-  try {
-    const allowedOrigins = [
-      "http://127.0.0.1:5500",
-      "http://localhost:5500",
-      "http://localhost:3000",
-      "http://localhost:5173"
-    ];
-    if (window.location.protocol === 'file:') {
-      console.warn('[TrackSpense] You are opening the app via file://. Please serve it via a local server (e.g., Live Server).');
-    } else if (!allowedOrigins.includes(window.location.origin)) {
-      console.warn(`[TrackSpense] Origin ${window.location.origin} is not among recommended dev origins: ${allowedOrigins.join(', ')}`);
-    }
-    if (window.location.protocol === 'https:' && API_BASE.startsWith('http://')) {
-      console.warn('[TrackSpense] Mixed content risk: page is https:// but API_BASE is http://. Use http:// for the page in dev or serve the API over https.');
-    }
-  } catch (e) {
-    // no-op in case window is not available
-  }
-})();
+// (function runtimeChecks() {
+//   try {
+//     const allowedOrigins = [
+//       "http://127.0.0.1:5500",
+//       "http://localhost:5500",
+//       "http://localhost:3000",
+//       "http://localhost:5173"
+//     ];
+//     if (window.location.protocol === 'file:') {
+//       console.warn('[TrackSpense] You are opening the app via file://. Please serve it via a local server (e.g., Live Server).');
+//     } else if (!allowedOrigins.includes(window.location.origin)) {
+//       console.warn(`[TrackSpense] Origin ${window.location.origin} is not among recommended dev origins: ${allowedOrigins.join(', ')}`);
+//     }
+//     if (window.location.protocol === 'https:' && API_BASE.startsWith('http://')) {
+//       console.warn('[TrackSpense] Mixed content risk: page is https:// but API_BASE is http://. Use http:// for the page in dev or serve the API over https.');
+//     }
+//   } catch (e) {
+//     // no-op in case window is not available
+//   }
+// })();
 
 function saveToken(token) {
   localStorage.setItem("token", token);
@@ -139,7 +139,7 @@ async function handleSignup(event) {
     if (loginData && loginData.token) saveToken(loginData.token);
     if (loginData && loginData.email) {
       try { localStorage.setItem('user', JSON.stringify({ email: loginData.email, isAuthenticated: true })); } catch {}
-    }
+    } 
 
     if (typeof window !== 'undefined' && typeof window.showToast === 'function') {
       window.showToast("Signup successful! You're now logged in.", 'success', 2000);
