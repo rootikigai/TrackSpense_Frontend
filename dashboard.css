@@ -1,0 +1,353 @@
+/* User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+body.light-mode .user-profile {
+  color: #1a1a1a;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    margin-left: 192px; 
+  }
+  body.all-expenses .dashboard-container,
+  body.reports-analytics .dashboard-container,
+  body.settings .dashboard-container {
+    margin-left: 0;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 5px;
+  background-color: #192633;
+  border: none;
+  border-radius: 0;
+  min-width: 160px;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  height: calc(100vh - 80px);
+  z-index: 1000;
+}
+
+body.light-mode .sidebar {
+  background-color: #ffffff;
+  border: none;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-item p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.sidebar-icon {
+  color: #ffffff;
+}
+
+body.light-mode .sidebar-icon {
+  color: #1a1a1a;
+}
+
+.sidebar-item:hover
+/*.sidebar-item.active */ {
+  background-color: #079f5b;
+  color: #ffffff;
+}
+
+body.light-mode .sidebar-item:hover,
+body.light-mode .sidebar-item.active {
+  background-color: #079f5b;
+  color: #ffffff;
+}
+
+body.light-mode .sidebar-item:hover .sidebar-icon,
+body.light-mode .sidebar-item.active .sidebar-icon {
+  color: #ffffff;
+}
+
+.sidebar-button {
+  margin-top: 16px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  flex: 1;
+  padding: 24px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.overview-section,
+.transactions-section,
+.chart-section,
+.expenses-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 1050px;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+.overview-card {
+  background-color: #192633;
+  border: 1px solid #324d67;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  min-height: 150px;
+}
+
+body.light-mode .overview-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.overview-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #92adc9;
+}
+
+body.light-mode .overview-title {
+  color: #666666;
+}
+
+.overview-value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 12px 0 0;
+}
+
+.transactions-header,
+.expenses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.all-expenses .expenses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.view-all-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #079f5b;
+  text-decoration: none;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #192633;
+  border: 1px solid #324d67;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.light-mode .transactions-table {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 16px;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+  border-bottom: 1px solid #324d67;
+}
+
+body.light-mode .transactions-table th,
+body.light-mode .transactions-table td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transactions-table th {
+  font-weight: 700;
+  background-color: #233648;
+  padding: 18px;
+}
+
+body.light-mode .transactions-table th {
+  background-color: #e0e0e0;
+}
+
+.transactions-table tr:nth-child(even) {
+  background-color: #233648;
+}
+
+body.light-mode .transactions-table tr:nth-child(even) {
+  background-color: #f4f7fa;
+}
+
+.chart-section canvas {
+  max-width: 600px;
+  width: 100%;
+  min-height: 300px;
+}
+
+.expense-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.expense-modal-content {
+  background-color: #192633;
+  border: 1px solid #324d67;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+
+body.light-mode .expense-modal-content {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.expense-modal-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+body.light-mode .close-modal {
+  color: #1a1a1a;
+}
+
+.close-modal:hover {
+  color: #079f5b;
+}
+
+body.light-mode .close-modal:hover {
+  color: #079f5b;
+}
+
+.expense-modal .form-group select {
+  padding: 12px;
+  font-size: 14px;
+  font-family: Inter, "Noto Sans", sans-serif;
+  background-color: #192633;
+  color: #ffffff;
+  border: 1px solid #324d67;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+body.light-mode .expense-modal .form-group select {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+
+.expense-modal .form-group select:focus {
+  outline: none;
+  border-color: #079f5b;
+  box-shadow: 0 0 15px rgba(7, 159, 91, 0.5);
+}
+
+.expense-modal .form-group input[type="date"] {
+  padding: 12px;
+  font-size: 14px;
+  font-family: Inter, "Noto Sans", sans-serif;
+  background-color: #192633;
+  color: #ffffff;
+  border: 1px solid #324d67;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+body.light-mode .expense-modal .form-group input[type="date"] {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+
+.expense-modal .form-group input[type="date"]:focus {
+  outline: none;
+  border-color: #079f5b;
+  box-shadow: 0 0 15px rgba(7, 159, 91, 0.5);
+}
+
+.expense-modal .primary-button {
+  margin-top: 16px;
+  width: 100%;
+}
