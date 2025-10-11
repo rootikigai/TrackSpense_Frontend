@@ -68,12 +68,12 @@ async function apiFetch(path, options = {}) {
 
   if (!res.ok) {
     let text = '';
-    try { text = await res.text(); } catch {}
+    try { text = await res.json(); } catch { }
 
     if ((res.status === 401 || res.status === 403) && auth && redirectOn401) {
       // Session invalid/expired — clear and redirect to login
       clearToken();
-      try { localStorage.removeItem('user'); } catch {}
+      try { localStorage.removeItem('user'); } catch { }
       if (!/login\.html$/.test(window.location.pathname)) {
         if (typeof window !== 'undefined' && typeof window.showToast === 'function') {
           window.showToast('Your session has expired. Please log in again.', 'warning', 2000);
@@ -84,7 +84,7 @@ async function apiFetch(path, options = {}) {
       }
     }
 
-    const message = `HTTP ${res.status}: ${text || res.statusText}`;
+    const message = `${text.message || res.statusText}`;
     throw new Error(message);
   }
 
@@ -138,8 +138,8 @@ async function handleSignup(event) {
 
     if (loginData && loginData.token) saveToken(loginData.token);
     if (loginData && loginData.email) {
-      try { localStorage.setItem('user', JSON.stringify({ email: loginData.email, isAuthenticated: true })); } catch {}
-    } 
+      try { localStorage.setItem('user', JSON.stringify({ email: loginData.email, isAuthenticated: true })); } catch { }
+    }
 
     if (typeof window !== 'undefined' && typeof window.showToast === 'function') {
       window.showToast("Signup successful! You're now logged in.", 'success', 2000);
@@ -168,12 +168,12 @@ async function handleLogin(event) {
       method: 'POST',
       body: { email, password },
       auth: false,
-      redirectOn401: false // don't auto-redirect on login failures
+      redirectOn401: false // I don't want to auto-redirect on login failures
     });
 
     if (data && data.token) saveToken(data.token);
     if (data && data.email) {
-      try { localStorage.setItem('user', JSON.stringify({ email: data.email, isAuthenticated: true })); } catch {}
+      try { localStorage.setItem('user', JSON.stringify({ email: data.email, isAuthenticated: true })); } catch { }
     }
     if (typeof window !== 'undefined' && typeof window.showToast === 'function') {
       window.showToast("Login successful!", 'success', 2000);
@@ -220,6 +220,37 @@ async function getAllExpenses() {
   }
 }
 
+// ====== Expense: Delete ======
+async function deleteExpense(expenseId) {
+  try {
+    return await apiFetch(`/expenses/delete/${expenseId}`, {
+      method: 'DELETE',
+      auth: true
+    });
+  } catch (err) {
+    console.error('Delete failed:', err);
+    throw err;
+  }
+}
+
+// ====== Expense: Update ======
+async function updateExpense(expenseId, amount, category, description, dateISO) {
+  try {
+    const body = { amount, category, description };
+    if (dateISO) body.date = dateISO;
+
+    return await apiFetch(`/expenses/update/${expenseId}`, {
+      method: 'PUT',
+      auth: true,
+      body
+    });
+  } catch (err) {
+    console.error('Update failed:', err);
+    throw err;
+  }
+}
+
+
 // ====== Expenses by date (ISO-8601 with time) ======
 async function getExpensesByDate(startISO, endISO) {
   const isoLike = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
@@ -233,7 +264,7 @@ async function getExpensesByDate(startISO, endISO) {
 // ====== Logout ======
 function logout() {
   clearToken();
-  try { localStorage.removeItem('user'); } catch {}
+  try { localStorage.removeItem('user'); } catch { }
   window.location.href = "login.html";
 }
 
