@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return c;
     }
-    window.showToast = function(message, type = 'info', duration = 2000) {
+    window.showToast = function (message, type = 'info', duration = 2000) {
         const container = ensureToastContainer();
         const t = document.createElement('div');
         t.className = `toast ${type}`;
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setDateMax() {
         const dateInput = qs('#expense-date');
         if (dateInput) {
-            const today = new Date().toISOString().slice(0,10);
+            const today = new Date().toISOString().slice(0, 10);
             dateInput.setAttribute('max', today);
         }
     }
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         expenseModal.addEventListener('click', (e) => { if (e.target === expenseModal) expenseModal.style.display = 'none'; });
         expenseForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const amountEl = qs('#expense-amount');
             const categoryEl = qs('#expense-category');
             const descriptionEl = qs('#expense-description');
@@ -130,10 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validate future date
             if (dateStr) {
-                const selected = new Date(dateStr);
+                const selectedDate = new Date(dateStr);
                 const today = new Date();
-                selected.setHours(23,59,59,999);
-                if (selected.getTime() > today.getTime()) {
+                selectedDate.setHours(0, 0, 0, 0);
+                today.setHours(0, 0, 0, 0);
+                if (selectedDate > today) {
                     showToast('You cannot select a future date.', 'error', 2500);
                     return;
                 }
@@ -146,12 +148,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const isoDate = dateStr ? `${dateStr}T00:00:00` : undefined;
-                if (typeof addExpense === 'function') {
+                const index = expenseForm.getAttribute('data-edit-index');
+
+                if (index !== null && index !== undefined && index !== '') {
+                    // EDIT MODE
+                    const expenses = window.__allExpensesCache || [];
+                    const expense = expenses[index];
+                    if (!expense) {
+                        showToast('Expense not found.', 'error', 2500);
+                        return;
+                    }
+
+                    await updateExpense(expense.id || expense._id, amount, category, description, isoDate);
+                    showToast('Expense updated successfully', 'success', 2000);
+                } else {
+                    // ADD MODE
                     await addExpense(amount, category, description, isoDate);
+                    showToast('Expense added successfully', 'success', 2000);
                 }
-                showToast('Expense added successfully', 'success', 2000);
+
+                // Close modal
+                expenseForm.removeAttribute('data-edit-index');
                 expenseModal.style.display = 'none';
-                // Refresh current page view
+
+                // Refresh current view
                 if (window.location.pathname.includes('dashboard.html')) {
                     updateDashboard();
                 } else if (window.location.pathname.includes('all_expenses.html')) {
@@ -159,10 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (window.location.pathname.includes('reports_analytics.html')) {
                     if (typeof renderReports === 'function') renderReports();
                 }
+
             } catch (err) {
-                showToast(err.message || 'Failed to add expense', 'error', 3000);
+                console.error(err);
+                showToast(err.message || 'Failed to save expense', 'error', 3000);
             }
         });
+
     }
 
     // To update my dashboard after CRUD
@@ -179,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tbody = qs('#transactions-table-body');
             if (tbody) {
                 tbody.innerHTML = '';
-                const sorted = expenses.slice().sort((a,b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
-                sorted.slice(0,5).forEach(e => {
+                const sorted = expenses.slice().sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
+                sorted.slice(0, 5).forEach(e => {
                     const tr = document.createElement('tr');
                     const d = (e.date || e.createdAt || '').toString().split('T')[0] || '';
                     tr.innerHTML = `
@@ -199,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     if (window.location.pathname.includes('dashboard.html')) updateDashboard();
 
-    // All Expenses renderer
+    // Render All Expenses
     async function renderAllExpenses() {
         try {
             if (typeof getAllExpenses !== 'function') return;
@@ -219,7 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${e.category || '-'}</td>
                         <td>${formatNaira(e.amount)}</td>
                         <td>${e.description || '-'}</td>
-                        <td></td>
+                        <td>
+                            <button class="action-button edit-button">Edit</button>
+                            <button class="action-button delete-button">Delete</button>
+                        </td>
                     `;
                     tbody.appendChild(tr);
                 });
@@ -250,8 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const expenses = Array.isArray(data) ? data : (data?.expenses || []);
             const total = expenses.reduce((s, e) => s + Number(e.amount || 0), 0);
             const avg = expenses.length ? (total / expenses.length) : 0;
-            const byCat = expenses.reduce((acc, e) => { const c = e.category || 'OTHER'; acc[c] = (acc[c]||0) + Number(e.amount||0); return acc; }, {});
-            const topCat = Object.entries(byCat).sort((a,b)=>b[1]-a[1])[0]?.[0] || '-';
+            const byCat = expenses.reduce((acc, e) => { const c = e.category || 'OTHER'; acc[c] = (acc[c] || 0) + Number(e.amount || 0); return acc; }, {});
+            const topCat = Object.entries(byCat).sort((a, b) => b[1] - a[1])[0]?.[0] || '-';
             const totalEl = qs('.reports-analytics #total-expenses') || qs('#total-expenses');
             const avgEl = qs('#average-expense');
             const topEl = qs('#top-category');
@@ -264,6 +290,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     if (window.location.pathname.includes('reports_analytics.html')) renderReports();
+
+    // Delete expense wiring (all expenses)
+    document.body.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('delete-button')) {
+            const tr = e.target.closest('tr');
+            if (!tr) return;
+            const tbody = tr.parentElement;
+            if (!tbody) return;
+            // Find index of this row in the table body
+            const rows = Array.from(tbody.children);
+            const index = rows.indexOf(tr);
+            if (index === -1) return;
+            const expenses = window.__allExpensesCache || [];
+            const expense = expenses[index];
+            if (!expense) {
+                showToast('Expense not found', 'error', 2000);
+                return;
+            }
+            if (!confirm('Are you sure you want to delete this expense? This action cannot be undone.')) return;
+            try {
+                if (typeof deleteExpense === 'function') {
+                    console.log("Deleting expense ID:", expense.id || expense._id);
+                    await deleteExpense(expense.id || expense._id);
+                }
+                showToast('Expense deleted successfully', 'success', 2000);
+                // Refresh the list
+                if (typeof renderAllExpenses === 'function') renderAllExpenses();
+                if (window.location.pathname.includes('dashboard.html')) updateDashboard();
+                if (window.location.pathname.includes('reports_analytics.html')) renderReports();
+            } catch (err) {
+                console.error(err);
+                showToast('Failed to delete expense', 'error', 2500);
+            }
+        } else if (e.target.classList.contains('edit-button')) {
+            const tr = e.target.closest('tr');
+            if (!tr) return;
+            const tbody = tr.parentElement;
+            if (!tbody) return;
+            const rows = Array.from(tbody.children);
+            const index = rows.indexOf(tr);
+            if (index === -1) return;
+            const expenses = window.__allExpensesCache || [];
+            const expense = expenses[index];
+            if (!expense) {
+                showToast('Expense not found', 'error', 2000);
+                return;
+            }
+            // Populate and show modal
+            if (expenseForm) {
+                expenseForm.setAttribute('data-edit-index', index);
+                const amountEl = qs('#expense-amount');
+                const categoryEl = qs('#expense-category');
+                const descriptionEl = qs('#expense-description');
+                const dateEl = qs('#expense-date');
+                if (amountEl) amountEl.value = expense.amount || '';
+                if (categoryEl) categoryEl.value = expense.category || '';
+                if (descriptionEl) descriptionEl.value = expense.description || '';
+                if (dateEl) {
+                    const d = (expense.date || expense.createdAt || '').toString().split('T')[0] || '';
+                    dateEl.value = d;
+                }
+                setDateMax();
+                expenseModal.style.display = 'flex';
+            }
+        }
+    });
 
     // Help modal wiring (dashboard)
     const helpModal = qs('#help-modal');
@@ -324,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearDataForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 if (confirm('You really sure about this? This cannot be undone.')) {
-                    if(confirm('Ni**a you really really sure???')){
+                    if (confirm('Ni**a you really really sure???')) {
                         localStorage.removeItem('expenses');
                         alert('All expenses cleared successfully!');
                     }
@@ -378,6 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'login.html';
                 }
             } else if (action === 'Logout') {
+                const confirmed = confirm('Not sure you got all your expenses. Have a second look will ya?');
+                if (confirmed) return;
+
                 if (typeof logout === 'function') {
                     logout();
                 } else {
@@ -396,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginModal = qs('#login-modal');
     const closeLoginModal = qs('#close-login-modal');
     const loginModalForm = qs('#login-modal-form');
+
     if (closeLoginModal && loginModal) {
         closeLoginModal.addEventListener('click', () => { loginModal.style.display = 'none'; });
         loginModal.addEventListener('click', (ev) => { if (ev.target === loginModal) loginModal.style.display = 'none'; });
@@ -411,7 +507,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     // Global route guard: restrict protected pages to authenticated users
     const protectedPages = ['dashboard.html', 'all_expenses.html', 'reports_analytics.html', 'settings.html'];
@@ -429,5 +524,33 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.toggle('header-scrolled', window.scrollY > 0);
         });
     }
+
+    // Disable form submit buttons until all required fields are filled
+    qsa('form').forEach(form => {
+        const requiredFields = Array.from(form.querySelectorAll('[required]'));
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        if (!submitButton || requiredFields.length === 0) return;
+
+        const validateForm = () => {
+            const allValid = requiredFields.every(field => {
+                if (field.type === 'checkbox' || field.type === 'radio') {
+                    return field.checked;
+                }
+                return field.value.trim() !== '';
+            });
+            submitButton.disabled = !allValid;
+        };
+
+        // Initial validation on load
+        validateForm();
+
+        // Revalidate on every input change
+        requiredFields.forEach(field => {
+            field.addEventListener('input', validateForm);
+            field.addEventListener('change', validateForm); // for selects, checkboxes
+        });
+    });
+
 
 });
