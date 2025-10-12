@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Light and Dark mode
+    // my logic for toggling light and dark mode
     const themeButton = qs('.icon-button');
     const iconDiv = themeButton ? themeButton.querySelector('.icon') : null;
     const sunSVG = `
@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // User email display...only authenticated users
+    // logic to display (only authenticated users') email
     const userEmailElement = qs('#user-email');
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     if (userEmailElement) {
         userEmailElement.textContent = (currentUser && currentUser.isAuthenticated && currentUser.email) ? currentUser.email : '';
     }
 
-    // Sidebar navigation
+    // Sidebar nav
     const sidebarItems = qsa('.sidebar-item');
     if (sidebarItems.length > 0) {
         sidebarItems.forEach(item => {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { t.classList.remove('show'); t.addEventListener('transitionend', () => t.remove(), { once: true }); }, duration);
     };
 
-    // Expense Modal (PopUp) Logic
+    // Expense Modal (my expense popUp) Logic
     const addExpenseButtons = qsa('#add-expense-button');
     const expenseModal = qs('#expense-modal');
     const closeModalButton = qs('#close-modal');
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const description = descriptionEl?.value || '';
             const dateStr = dateEl ? dateEl.value : '';
 
-            // Validate future date
+            // Validate future date...hehe...no whyne me!
             if (dateStr) {
                 const selectedDate = new Date(dateStr);
                 const today = new Date();
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showToast('Expense added successfully', 'success', 2000);
                 }
 
-                // Close modal
+                // Close popup
                 expenseForm.removeAttribute('data-edit-index');
                 expenseModal.style.display = 'none';
 
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newEmail = userEmailInput.value;
                 localStorage.setItem('user', JSON.stringify({ email: newEmail, isAuthenticated: true }));
                 if (qs('#user-email')) qs('#user-email').textContent = newEmail;
-                alert('Email updated successfully!');
+                showToast('Email updated successfully!');
             });
         }
 
@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.toggle('light-mode', theme === 'light');
                 localStorage.setItem('theme', theme);
                 applyThemeFromStorage();
-                alert('Theme updated successfully!');
+                showToast('Theme updated successfully!');
             });
         }
 
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (confirm('You really sure about this? This cannot be undone.')) {
                     if (confirm('Ni**a you really really sure???')) {
                         localStorage.removeItem('expenses');
-                        alert('All expenses cleared successfully!');
+                        showToast('All expenses cleared successfully!');
                     }
                 }
             });
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
             messages.push({ name, email, subject, message, date: new Date().toISOString() });
             localStorage.setItem('contactMessages', JSON.stringify(messages));
-            alert('Thanks! Your message has been received.');
+            showToast('Thanks! Your message has been received.');
             contactFormHome.reset();
         });
     }
