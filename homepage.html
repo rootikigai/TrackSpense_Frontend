@@ -1,216 +1,248 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>TrackSpense</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <div class="logo-container">
-          <div class="logo">
-            <img src="assets/images/trackspense-high-resolution-logo-transparent.png" alt="TrackSpense Logo">
-          </div>
-          <h2 class="logo-text">TrackSpense</h2>
+
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" />
+  <link rel="stylesheet" href="homepage.css" />
+  <link rel="stylesheet" href="styles.css">
+  <title>TrackSpense</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="assets/images/trackspense-high-resolution-logo-transparent.png" alt="TrackSpense Logo">
         </div>
-        <div class="nav-container">
-          <div class="nav-links">
-            <a class="nav-link" href="#features" id="features-link">Features</a>
-            <a class="nav-link" href="#testimonials" id="testimonials-link">Testimonials</a>
-            <a class="nav-link" href="#about" id="about-link">About Us</a>
-            <a class="nav-link" href="#contact" id="contact-link">Contact Us</a>
+        <h2 class="logo-text">TrackSpense</h2>
+      </div>
+      <div class="nav-container">
+        <div class="nav-links">
+          <a class="nav-link" href="#features" id="features-link">Features</a>
+          <a class="nav-link" href="#testimonials" id="testimonials-link">Testimonials</a>
+          <a class="nav-link" href="#about" id="about-link">About Us</a>
+          <a class="nav-link" href="#contact" id="contact-link">Contact Us</a>
+        </div>
+        <div class="button-group">
+          <button class="primary-button"><span>Sign Up</span></button>
+          <button class="secondary-button"><span>Login</span></button>
+          <button class="icon-button">
+            <div class="icon" data-icon="Sun" data-size="20px" data-weight="regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor"
+                viewBox="0 0 256 256">
+                <path
+                  d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z">
+                </path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="main-content">
+      <div class="content-container">
+        <div class="hero-section">
+          <div class="hero-content">
+            <h1 class="hero-title">Track Your Expenses Effortlessly</h1>
+            <h2 class="hero-subtitle">Gain insights into your spending habits with TrackSpense. Our intuitive interface
+              makes expense tracking simple and effective.</h2>
           </div>
-          <div class="button-group">
-            <button class="primary-button"><span>Sign Up</span></button>
-            <button class="secondary-button"><span>Login</span></button>
-            <button class="icon-button">
-              <div class="icon" data-icon="Sun" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"></path>
+          <div class="hero-buttons">
+            <button class="primary-button large-button"><span>Sign Up</span></button>
+            <button class="secondary-button large-button"><span>Login</span></button>
+          </div>
+        </div>
+        <div class="features-section" id="features">
+          <div class="section-header">
+            <h1 class="section-title">Key Features</h1>
+            <p class="section-description">TrackSpense offers a range of features designed to help you manage your
+              expenses effectively.</p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon" data-icon="CurrencyCircleDollar" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28h-4v8a8,8,0,0,1-16,0v-8H104a8,8,0,0,1,0-16h36a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h4V72a8,8,0,0,1,16,0v8h16a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z">
+                  </path>
                 </svg>
               </div>
-            </button>
+              <div class="feature-text">
+                <h2 class="feature-title">Expense Tracking</h2>
+                <p class="feature-description">Easily log your daily expenses with our user-friendly interface.</p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon" data-icon="ChartLine" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h2 class="feature-title">Detailed Reports</h2>
+                <p class="feature-description">Generate comprehensive reports to analyze your spending patterns.</p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon" data-icon="ShieldCheck" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
+                  viewBox="0 0 256 256">
+                  <path
+                    d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h2 class="feature-title">Secure & Private</h2>
+                <p class="feature-description">Your data is encrypted and stored securely, ensuring your privacy.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </header>
-      <div class="main-content">
-        <div class="content-container">
-          <div class="hero-section">
-            <div class="hero-content">
-              <h1 class="hero-title">Track Your Expenses Effortlessly</h1>
-              <h2 class="hero-subtitle">Gain insights into your spending habits with TrackSpense. Our intuitive interface makes expense tracking simple and effective.</h2>
-            </div>
-            <div class="hero-buttons">
-              <button class="primary-button large-button"><span>Sign Up</span></button>
-              <button class="secondary-button large-button"><span>Login</span></button>
-            </div>
-          </div>
-          <div class="features-section" id="features">
-            <div class="section-header">
-              <h1 class="section-title">Key Features</h1>
-              <p class="section-description">TrackSpense offers a range of features designed to help you manage your expenses effectively.</p>
-            </div>
-            <div class="features-grid">
-              <div class="feature-card">
-                <div class="feature-icon" data-icon="CurrencyCircleDollar" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28h-4v8a8,8,0,0,1-16,0v-8H104a8,8,0,0,1,0-16h36a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h4V72a8,8,0,0,1,16,0v8h16a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z"></path>
-                  </svg>
-                </div>
-                <div class="feature-text">
-                  <h2 class="feature-title">Expense Tracking</h2>
-                  <p class="feature-description">Easily log your daily expenses with our user-friendly interface.</p>
-                </div>
+        <h2 class="section-heading" id="testimonials">User Testimonials</h2>
+        <div class="testimonials-container">
+          <div class="testimonials">
+            <div class="testimonial-card">
+              <div class="testimonial-image testimonial-image-1"></div>
+              <div>
+                <p class="testimonial-text">TrackSpense has transformed the way I manage my finances.
+                  It's incredibly intuitive and has helped me identify areas where I can save.</p>
+                <p class="testimonial-author">Allwell E., Software Engineer</p>
               </div>
-              <div class="feature-card">
-                <div class="feature-icon" data-icon="ChartLine" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z"></path>
-                  </svg>
-                </div>
-                <div class="feature-text">
-                  <h2 class="feature-title">Detailed Reports</h2>
-                  <p class="feature-description">Generate comprehensive reports to analyze your spending patterns.</p>
-                </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-image testimonial-image-2"></div>
+              <div>
+                <p class="testimonial-text">I love the simplicity of TrackSpense.
+                  It's easy to use and provides valuable insights into my spending habits.</p>
+                <p class="testimonial-author">Sikiru A., CTO</p>
               </div>
-              <div class="feature-card">
-                <div class="feature-icon" data-icon="ShieldCheck" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path>
-                  </svg>
-                </div>
-                <div class="feature-text">
-                  <h2 class="feature-title">Secure & Private</h2>
-                  <p class="feature-description">Your data is encrypted and stored securely, ensuring your privacy.</p>
-                </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-image testimonial-image-3"></div>
+              <div>
+                <p class="testimonial-text">TrackSpense is a game-changer!
+                  The reporting features are fantastic,
+                  and I now have a much clearer picture of my expenses.</p>
+                <p class="testimonial-author">Glory I., CFO</p>
               </div>
             </div>
           </div>
-          <h2 class="section-heading" id="testimonials">User Testimonials</h2>
-          <div class="testimonials-container">
-            <div class="testimonials">
-              <div class="testimonial-card">
-                <div class="testimonial-image testimonial-image-1"></div>
-                <div>
-                  <p class="testimonial-text">TrackSpense has transformed the way I manage my finances. 
-                    It's incredibly intuitive and has helped me identify areas where I can save.</p>
-                  <p class="testimonial-author">Allwell E., Software Engineer</p>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="testimonial-image testimonial-image-2"></div>
-                <div>
-                  <p class="testimonial-text">I love the simplicity of TrackSpense. 
-                    It's easy to use and provides valuable insights into my spending habits.</p>
-                  <p class="testimonial-author">Sikiru A., CTO</p>
-                </div>
-              </div>
-              <div class="testimonial-card">
-                <div class="testimonial-image testimonial-image-3"></div>
-                <div>
-                  <p class="testimonial-text">TrackSpense is a game-changer! 
-                    The reporting features are fantastic, 
-                    and I now have a much clearer picture of my expenses.</p>
-                  <p class="testimonial-author">Glory I., CFO</p>
-                </div>
-              </div>
-            </div>
+        </div>
+        <h2 class="section-heading" id="about">About Us</h2>
+        <p class="about-text">TrackSpense was created with the goal of simplifying personal finance management. Our team
+          is dedicated to providing a user-friendly and effective tool for tracking expenses and gaining financial
+          insights. We believe that understanding your spending habits is the first step towards achieving your
+          financial goals.</p>
+        <div class="cta-section">
+          <div class="cta-content">
+            <h1 class="cta-title">Ready to Take Control of Your Finances?</h1>
+            <p class="cta-description">Sign up for TrackSpense today and start tracking your expenses with ease.</p>
           </div>
-          <h2 class="section-heading" id="about">About Us</h2>
-          <p class="about-text">TrackSpense was created with the goal of simplifying personal finance management. Our team is dedicated to providing a user-friendly and effective tool for tracking expenses and gaining financial insights. We believe that understanding your spending habits is the first step towards achieving your financial goals.</p>
-          <div class="cta-section">
-            <div class="cta-content">
-              <h1 class="cta-title">Ready to Take Control of Your Finances?</h1>
-              <p class="cta-description">Sign up for TrackSpense today and start tracking your expenses with ease.</p>
-            </div>
-            <div class="cta-button-container">
-              <button class="primary-button large-button grow"><span>Get Started</span></button>
-            </div>
+          <div class="cta-button-container">
+            <button class="primary-button large-button grow"><span>Get Started</span></button>
           </div>
         </div>
       </div>
-
-      <!-- Contact Section -->
-      <section class="form-section" id="contact">
-        <div class="content-container">
-          <h1 class="form-title">Contact Us</h1>
-          <p class="cta-description">Have a question or feedback? Send us a message and we'll get back to you within 2 business days.</p>
-          <form id="contact-form-home" class="auth-form">
-            <div class="form-group">
-              <label for="contact-name-home">Name</label>
-              <input id="contact-name-home" type="text" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-email-home">Email</label>
-              <input id="contact-email-home" type="email" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-subject-home">Subject</label>
-              <input id="contact-subject-home" type="text" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-message-home">Message</label>
-              <textarea id="contact-message-home" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="primary-button">Send Message</button>
-          </form>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-links">
-            <a class="footer-link" href="#" id="privacy-link">Privacy Policy</a>
-            <a class="footer-link" href="#" id="terms-link">Terms of Service</a>
-          </div>
-          <div class="social-links">
-            <!-- TODO: Replace # with your X (Twitter) profile URL -->
-            <a href="#">
-              <div class="social-icon" title="X (Twitter)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.6l3.2 4.4L16.8 4H20l-6.2 7.2L20 20h-4.6l-3.6-5-4 5H4l6.6-7.6L4 4z"></path></svg>
-              </div>
-            </a>
-            <!-- TODO: Replace # with your LinkedIn profile URL -->
-            <a href="#">
-              <div class="social-icon" title="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.1c.5-.9 1.8-2.2 3.9-2.2 4.1 0 4.9 2.7 4.9 6.2V24h-4v-6.9c0-1.6 0-3.7-2.3-3.7-2.3 0-2.6 1.8-2.6 3.6V24H8V8z"/></svg>
-              </div>
-            </a>
-            <!-- TODO: Replace # with your GitHub profile URL -->
-            <a href="#">
-              <div class="social-icon" title="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.34-1.78-1.34-1.78-1.1-.75.08-.74.08-.74 1.21.09 1.85 1.25 1.85 1.25 1.08 1.85 2.82 1.31 3.5 1 .11-.79.42-1.31.76-1.61-2.66-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.23v3.31c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
-              </div>
-            </a>
-          </div>
-          <p class="footer-text">© 2025 TrackSpense. --IKIGAI-- All rights reserved.</p>
-        </div>
-      </footer>
     </div>
-    <script src="auth.js"></script>
-    <script src="script.js"></script>
-    <!-- Login Modal -->
-    <div id="login-modal" class="expense-modal">
-      <div class="expense-modal-content">
-        <button class="close-modal" id="close-login-modal">&times;</button>
-        <h2>Login</h2>
-        <form id="login-modal-form">
+
+    <!-- Contact Section -->
+    <section class="form-section" id="contact">
+      <div class="content-container">
+        <h1 class="form-title">Contact Us</h1>
+        <p class="cta-description">Have a question or feedback? Send us a message and we'll get back to you within 2
+          business days.</p>
+        <form id="contact-form-home" class="auth-form">
           <div class="form-group">
-            <label for="login-email">Email</label>
-            <input type="email" id="login-email" name="login-email" required />
+            <label for="contact-name-home">Name</label>
+            <input id="contact-name-home" type="text" required />
           </div>
           <div class="form-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="login-password" required />
+            <label for="contact-email-home">Email</label>
+            <input id="contact-email-home" type="email" required />
           </div>
-          <button type="submit" class="primary-button">Login</button>
+          <div class="form-group">
+            <label for="contact-subject-home">Subject</label>
+            <input id="contact-subject-home" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message-home">Message</label>
+            <textarea id="contact-message-home" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="primary-button">Send Message</button>
         </form>
       </div>
-    </div>
+    </section>
 
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-links">
+          <a class="footer-link" href="#" id="privacy-link">Privacy Policy</a>
+          <a class="footer-link" href="#" id="terms-link">Terms of Service</a>
+        </div>
+        <div class="social-links">
+          <!-- TODO: Replace # with your X (Twitter) profile URL -->
+          <a href="#">
+            <div class="social-icon" title="X (Twitter)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path d="M4 4h4.6l3.2 4.4L16.8 4H20l-6.2 7.2L20 20h-4.6l-3.6-5-4 5H4l6.6-7.6L4 4z"></path>
+              </svg>
+            </div>
+          </a>
+          <!-- TODO: Replace # with your LinkedIn profile URL -->
+          <a href="#">
+            <div class="social-icon" title="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.1c.5-.9 1.8-2.2 3.9-2.2 4.1 0 4.9 2.7 4.9 6.2V24h-4v-6.9c0-1.6 0-3.7-2.3-3.7-2.3 0-2.6 1.8-2.6 3.6V24H8V8z" />
+              </svg>
+            </div>
+          </a>
+          <!-- TODO: Replace # with your GitHub profile URL -->
+          <a href="#">
+            <div class="social-icon" title="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path
+                  d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.34-1.78-1.34-1.78-1.1-.75.08-.74.08-.74 1.21.09 1.85 1.25 1.85 1.25 1.08 1.85 2.82 1.31 3.5 1 .11-.79.42-1.31.76-1.61-2.66-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.23v3.31c0 .32.22.7.83.58A12 12 0 0 0 12 .5z" />
+              </svg>
+            </div>
+          </a>
+        </div>
+        <!-- Login Modal -->
+        <div id="login-modal" class="expense-modal">
+          <div class="expense-modal-content">
+            <button class="close-modal" id="close-login-modal">&times;</button>
+            <h2>Login</h2>
+            <form id="login-modal-form">
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="login-email" required />
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login-password" required />
+              </div>
+              <button type="submit" class="primary-button">Login</button>
+            </form>
+          </div>
+        </div>
+        <p class="footer-text">© 2025 TrackSpense. --IKIGAI-- All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
 
-  </body>
 </html>
